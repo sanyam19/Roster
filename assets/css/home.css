@@ -1,0 +1,104 @@
+/*  for customisation we`ll using external file for css */
+body, html {
+	box-sizing: border-box;
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+	/* disabling the scrollbar of body */
+	overflow: hidden;
+}
+/* setting the background */
+body{
+	background: url(https://pcbx.us/bexy.jpg);
+}
+
+		/* 1st part of the webapp */
+
+/* title */
+#title{
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+	box-sizing: border-box;
+}
+#title div{
+	display: inline-block;
+}
+#logo{
+	margin: 1rem 0px 0px;
+	background: rgb(70, 43, 226);
+	width: 3.5rem;
+	border-radius: 0.5rem;
+}
+#title_todo{
+	margin-left: 1rem;
+	font-size: 2.2rem;
+	margin-top: 1rem;
+}
+
+/* Description */
+#form-desc label{
+	box-sizing: border-box;
+	padding-left: 0.8rem;
+}
+/* Choose a Category */
+
+#cate-date{
+	box-sizing: border-box;
+}
+.choose-category {
+	display: inline-block;
+	width: 30%;
+	min-width: 175px;
+}
+.choose-category #inputGroupSelect01{
+	box-sizing: border-box;
+	width: 100%;
+}
+.box {
+	/* fixing the position of the category box */
+	top: 10%;
+	right: 0%;
+}
+
+
+/* cate-date */
+#perpendicular {
+	box-sizing: border-box;
+	width: 2px;
+	height: 60px;
+	background-color: lightgray;
+	display: inline-block;
+	margin: 0 15px;
+	vertical-align: -webkit-baseline-middle;
+}
+/* styling the due date input */
+#date_picker{
+	box-sizing: border-box;
+	font-size: 15px;
+	margin-top: 1.5rem;
+	width: 35%;
+	min-width: 115px;
+	padding: 10px;
+	height: 39px;
+	border-color: lightgray;
+	border-width: 1px;
+	border-radius: 0.5rem;
+}
+/* due date box when clicked, should act as same as color like textarea & select we used */
+#date_picker:focus {
+	outline-color: rgba(24, 140, 248, 0.4);
+}
+/* 3rd part of our webpage */
+#to_do_tasks {
+	box-sizing: border-box;
+	/* making it scrollable */
+	overflow: scroll;
+	/* fixing the height */
+	max-height: 34vh;
+	
+}
+/* for hiding  the inner scrollbar where our todo tasks are displayed */
+#to_do_tasks::-webkit-scrollbar {
+	visibility: hidden;
+}
