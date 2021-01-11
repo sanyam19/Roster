@@ -7,6 +7,11 @@ const port = 8000;
 /* path is inbuilt module to node, so we did`nt require npm install */
 const path = require('path');
 
+/* configuring the database */
+const db = require('./config/mongoose');
+/*  our database model */
+const to_do_tasks = require('./models/to_do_task');
+
 /* firing-up the express so as to get all the functionalities in the app */
 const app = express()
 
