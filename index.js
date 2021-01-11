@@ -13,8 +13,7 @@ const db = require('./config/mongoose');
 const to_do_tasks = require('./models/to_do_task');
 
 /* firing-up the express so as to get all the functionalities in the app */
-const app = express()
-
+const app = express();
 /* telling the expresss that our viewing engine/ template engine will be ejs */
 app.set('view engine', 'ejs');
 

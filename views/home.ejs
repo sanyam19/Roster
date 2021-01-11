@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Roster
+        <%=title%>
     </title>
 
     <!-- Bootstrap CSS -->
@@ -29,8 +29,128 @@
 </head>
 
 <body>
-    
+    <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 bg-light">
 
+        <!-- This div has 3 parts :- form, section, form -->
+
+        <!-- 1st part contains description, category, due date  -->
+        <form action="/create-to_do_task" method="POST" class="pb-0 mt-1" id="main">
+            <!-- this section "title" will contain logo & title of the app -->
+            <section id="title">
+                <!-- logo of the app -->
+                <div id="logo">
+                    <h1 class="text-center"><i class="fas fa-pen-alt" style="color:#0a0a0a"></i></h1>
+                </div>
+                <!-- title of the app -->
+                <div id="title_todo">
+                    <h1><%=locals.title%></h1>   
+                </div>
+            </section>
+            <hr class="bg-primary">
+
+            <!-- this is for the decription part -->
+            <section id="form-desc">
+                <div class="form-group">
+                    <label for="textarea-desc">Description</label>
+                    <textarea class="form-control" id="textarea-desc" rows="1" placeholder="Hey !! What do you need to do?"
+                        name="Description"></textarea>
+                </div>
+            </section>
+            <hr class="mt-0 mb-1">
+
+            <!-- now for Category & Due date -->
+            <section class="text-center" id="cate-date">
+                <!-- using bootstap drop down-->
+                <div class="input-group choose-category">
+                    <select id="inputGroupSelect01" class="custom-select bg-light"  name="Category">
+                        <!-- options for choosing a category -->
+                        <option selected>Choose a Category</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="School">School</option>
+                        <option value="Cleaning">Cleaning</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+             
+                <!-- A perpendicular line between choosing a category and due date -->
+                <div id="perpendicular"></div>
+                <!-- input for date. It uses JQuery UI -->
+                <input class="bg-light" type="text" id="date_picker" placeholder="Due Date" name="Due_Date"
+                    class="mb-2">
+            </section>
+            <br>
+            <hr class="mt-0 mb-0">
+        </form>
+
+        <!-- Now, the second part contains 2 buttons :-  For adding a task, for deleting task -->
+        <section id="two-buttons" class="text-center pb-0">
+            <!-- We`ll be using bootstap butttons -->
+            <button type="submit" form="main" class="btn btn-lg btn-dark"><i class="fas fa-plus"></i> ADD TASK</button>
+            
+            <!-- since for deleting we`ll require the id, so better is to create delete button using anchor tag -->
+            <a href="" class="btn btn-lg mb-3 mt-3 ml-4 btn-danger"><i class="far fa-trash-alt"></i>
+                DELETE TASKS</a>
+        </section>
+        <!-- Now coming to 3rd part of the webpage -->
+        <!-- this is the third part, all the added todo task will be displayed here-->
+        <form id="to_do_tasks" method="GET" action="" class="mb-1 pb-0">
+            <!-- to_do_task_list contains all the tasks that we`ve added, now iterating to each and diplaying them -->
+            <%for (let i of to_do_task_list){%>
+                <div class="to_do_task pl-2">
+                    <hr class="mb-3 mt-1">
+                    <div class="custom-control custom-checkbox position-relative">
+                        <!-- using customised bootstrap checkbox (not default one) -->
+                        <input type="checkbox" class="custom-control-input" id="<%=i._id%>">
+                        <label class="custom-control-label font-weight-bolder" for="<%=i._id%>">
+                            <%if(i.Description.length){%>
+                                <!-- display the description mentioned by the user -->
+                                <%=i.Description%>
+                            <%}else{%>
+                                <%="No Description given by the User 🤦🏻‍♂️"%>   
+                            <%}%>
+                        </label>
+                            
+                        <div class="d-block text-muted date_handling">📅
+                            <%if(i.Due_Date){%>
+                                <!-- date mentioned by the user -->
+                                <%=i.Due_Date%>
+                            <%}else{%>
+                                <%="Not mentioned"%>
+                            <%}%>
+                        </div>
+
+                        <!-- this part is for Choosing a category by the user, assigning the different background colors for them, if not choosen nothing will be displayed -->
+                        <%if(i.Category== "Personal" ){%>
+                            <div class="box btn position-absolute btn-danger disabled">
+                                <%=i.Category%>
+                            </div>
+                            <%}%>
+                        <%if(i.Category== "Work" ){%>
+                            <div class="box btn position-absolute btn-warning disabled">
+                            <%=i.Category%>
+                            </div>
+                        <%}%>
+                        <%if(i.Category=="School"){%>
+                            <div class="box btn position-absolute btn-primary disabled">
+                            <%=i.Category%>
+                            </div>
+                        <%}%>
+                        <%if(i.Category== "Cleaning" ){%>
+                            <div class="box btn position-absolute btn-info disabled">
+                            <%=i.Category%>
+                            </div>
+                        <%}%>
+                        <%if(i.Category== "Other" ){%>
+                            <div class="box btn position-absolute btn-success disabled">
+                            <%=i.Category%>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+                <%}%>
+        </form>
+    </div>
 
     <!-- juery script for datepicker -->
     <script>
